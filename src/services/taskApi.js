@@ -9,11 +9,15 @@ import {
     baseQuery: fetchBaseQuery({
       baseUrl: "http://localhost:5000/"
     }),
-    tagTypes: ["Task"],
+    tagTypes: ["Task","User"],
     endpoints: (builder) => ({
       tasks: builder.query({
         query: () => "/tasks",
         providesTags: ["Task"]
+      }),
+      users: builder.query({
+        query: () => "/users",
+        providesTags: ["User"]
       }),
       addTask: builder.mutation({
         query: (task) => ({
@@ -37,6 +41,29 @@ import {
           method: "DELETE"
         }),
         invalidatesTags: ["Task"]
+      }),
+      addUser: builder.mutation({
+        query: (task) => ({
+          url: "/users",
+          method: "POST",
+          body: task
+        }),
+        invalidatesTags: ["User"]
+      }),
+      updateUser: builder.mutation({
+        query: ({ id, ...rest }) => ({
+          url: `/users/${id}`,
+          method: "PUT",
+          body: rest
+        }),
+        invalidatesTags: ["User"]
+      }),
+      deleteUser: builder.mutation({
+        query: (id) => ({
+          url: `/users/${id}`,
+          method: "DELETE"
+        }),
+        invalidatesTags: ["User"]
       })
     })
   });
@@ -44,5 +71,9 @@ import {
     useTasksQuery,
     useAddTaskMutation,
     useUpdateTaskMutation,
-    useDeleteTaskMutation
+    useDeleteTaskMutation,
+    useUsersQuery,
+    useAddUserMutation,
+    useDeleteUserMutation,
+    useUpdateUserMutation
   } = taskApi;

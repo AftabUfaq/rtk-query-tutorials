@@ -1,18 +1,18 @@
 import {useState} from 'react'
-import TaskItem from './TaskItem'
-import EditTask from './EditTask'
-import {useUpdateTaskMutation,useDeleteTaskMutation} from './services/taskApi';
+import UserItem from './UserItem'
+import EditUser from './EditUser'
+import {useUpdateUserMutation,useDeleteUserMutation} from './services/taskApi';
 
-function Task({id, title, description, completed}) {
+function Task({id, name, mobile, completed}) {
 
   const [checked, setChecked] = useState(completed)
   const [open, setOpen] = useState({edit:false, view:false})
-  const [updateTask] = useUpdateTaskMutation();
-  const [deleteTask] = useDeleteTaskMutation();
+  const [updateUser] = useUpdateUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
 
   const handleDeleteTask = (e) => {
     e.preventDefault();
-    deleteTask(id);
+    deleteUser(id);
     handleClose();
   };
   
@@ -22,12 +22,12 @@ function Task({id, title, description, completed}) {
   const handleUpdateTask = (e) => {
     e.preventDefault();
     const task = {
-      title,
-      description,
+      name,
+      mobile,
       completed: checked,
       id
     };
-    updateTask(task);
+    updateUser(task);
   }
   return (
     <div className={`task ${checked && 'task--borderColor'}`}>
@@ -45,8 +45,8 @@ function Task({id, title, description, completed}) {
           onClick={() => setChecked(!checked)} ></label>
       </div>
       <div className='task__body'>
-        <h2>{title}</h2>
-        <p>{description}</p>
+        <h2>{name}</h2>
+        <p>{mobile}</p>
         <div className='task__buttons'>
           <div className='task__deleteNedit'>
             <button 
@@ -64,18 +64,18 @@ function Task({id, title, description, completed}) {
       </div>
 
       {open.view &&
-        <TaskItem 
+        <UserItem 
           onClose={handleClose} 
-          title={title} 
-          description={description} 
+          name={name} 
+          mobile={mobile} 
           open={open.view} />
       }
 
       {open.edit &&
-        <EditTask 
+        <EditUser 
           onClose={handleClose} 
-          toEditTitle={title} 
-          toEditDescription={description} 
+          toEditTitle={name} 
+          toEditDescription={mobile} 
           open={open.edit}
           id={id} />
       }
