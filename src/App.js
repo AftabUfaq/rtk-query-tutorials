@@ -4,9 +4,10 @@ import User from './UserManager'
 function App() {
   
   return (
-    <div className='app'>
-      <Home />
-      <User />
+    <div className='my_app'>
+    
+        <Home />
+        <User />
     </div>
   );
 }

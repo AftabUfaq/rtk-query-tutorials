@@ -1,9 +1,12 @@
 /* For TaskManager component */
+.my_app{
+  margin-bottom: 10px;
+}
 .taskManager > header{
-  padding: 25px 20px;
+  padding: 2px 20px;
   background-color: hsl(210 75% 25%);
   color: white;
-  font-size: 28px;
+  font-size: 12px;
   font-family: cursive;
 }
 
@@ -18,8 +21,8 @@
 .taskManager__container > button {
   border: none;
   color: white;
-  font-size: 18px;
-  padding: 10px 15px;
+  font-size: 14px;
+  padding: 5px 5px;
   margin: 0 auto;
   background-color: hsl(210 75% 25%);
   cursor: pointer;
@@ -148,7 +151,7 @@
 /* For Task component */
 .task{
   width: 100%;
-  padding: 15px 20px;
+  margin: 15px 20px;
   border-left: 4px solid hsl(210, 10%, 75%);
   background-color: white;
   max-width: 700px;
